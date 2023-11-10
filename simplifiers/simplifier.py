@@ -25,7 +25,7 @@ class SimplifierFile(object):
                     for hasho in self.hashes:
                         check_hash = check_password_hash(hasho, line)
                         if check_hash:
-                            self.hashes_cracked[line] += 1
+                            self.hashes_cracked[line] = True
                             return "Cracked Hash(es)"
                         else:
                             continue
