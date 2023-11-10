@@ -27,7 +27,7 @@ class SimplifierFile(object):
                         if check_hash:
                             print(f"Hash: {hasho} Has Password {line}")
                             self.hashes_cracked[line] = True
-                            return "Cracked Hash(es)"
+                            continue
                         else:
                             continue
 
