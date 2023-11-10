@@ -48,6 +48,6 @@ class SimplifierSingle(object):
                     check_hash = check_password_hash(self.hasho, line)
                     if check_hash:
                         print(f"Password Is {line}")
-                        break
+                        exit(0)
                     else:
                         continue
