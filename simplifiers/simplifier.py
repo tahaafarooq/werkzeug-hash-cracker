@@ -9,7 +9,7 @@ class SimplifierFile(object):
         self.hashes_cracked = {}
 
     def interprete_hash_file(self):
-        with open(self.hash_file, "r") as hashs:
+        with open(self.hash_file, "r", encoding="latin-1") as hashs:
             for hasho in hashs:
                 words = hasho.strip().split()
                 for line in words:
@@ -17,7 +17,7 @@ class SimplifierFile(object):
                     return "Saved The Hashes"
 
     def crack_hash_file(self):
-        with open(self.wordlist, "r") as wordlist_file:
+        with open(self.wordlist, "r", encoding="latin-1") as wordlist_file:
             for word in wordlist_file:
                 # len_hashes = len(self.hashes)
                 words = word.strip().split()
@@ -42,7 +42,7 @@ class SimplifierSingle(object):
         self.wordlist = wordlist
 
     def crack_single_hash(self):
-        with open(self.wordlist, "r") as wordlist_file:
+        with open(self.wordlist, "r", encoding="latin-1") as wordlist_file:
             for word in wordlist_file:
                 words = word.strip().split()
                 for line in words:
