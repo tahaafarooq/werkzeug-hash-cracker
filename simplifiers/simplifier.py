@@ -33,7 +33,7 @@ class SimplifierFile(object):
                 password = words.get()
                 if check_password_hash(hasho[i], password):
                     print(f"Hash: {hasho[i]} Has Password {password}")
-                break
+            break
         exit(0)
 
     def check_results(self):
