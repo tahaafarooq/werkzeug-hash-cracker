@@ -33,6 +33,9 @@ class SimplifierFile(object):
                 password = words.get()
                 if check_password_hash(hasho[i], password):
                     print(f"Hash: {hasho[i]} Has Password {password}")
+                    break
+                else:
+                    continue
             break
         exit(0)
 
