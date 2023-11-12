@@ -29,8 +29,8 @@ class SimplifierFile(object):
                 words.put(word)
 
         while not words.empty():
-            password = words.get()
             for i in range(0, len(hasho)):
+                password = words.get()
                 if check_password_hash(hasho[i], password):
                     print(f"Hash: {hasho[i]} Has Password {password}")
                     break
