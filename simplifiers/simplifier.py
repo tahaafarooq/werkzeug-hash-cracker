@@ -1,4 +1,5 @@
 from werkzeug.security import check_password_hash
+from queue import Queue
 
 
 class SimplifierFile(object):
@@ -17,19 +18,23 @@ class SimplifierFile(object):
                     return "Saved The Hashes"
 
     def crack_hash_file(self):
+        with open(self.hash_file, "r") as hasho:
+            hasho = hasho.read().split()
+
         with open(self.wordlist, "r", encoding="latin-1") as wordlist_file:
-            for word in wordlist_file:
-                # len_hashes = len(self.hashes)
-                words = word.strip().split()
-                for line in words:
-                    for hasho in self.hashes:
-                        check_hash = check_password_hash(hasho, line)
-                        if check_hash:
-                            print(f"Hash: {hasho} Has Password {line}")
-                            self.hashes_cracked[line] = True
-                            continue
-                        else:
-                            continue
+            raw_words = wordlist_file.read().split()
+            words = Queue()
+
+            for word in raw_words:
+                words.put(word)
+
+        while not words.empty():
+            password = words.get()
+            for i in range(0, len(hasho)):
+                if check_password_hash(hasho[i], password):
+                    print(f"Hash: {hasho} Has Password {password}")
+                    break
+        exit(0)
 
     def check_results(self):
         if self.hashes_cracked is not None:
@@ -48,7 +53,7 @@ class SimplifierSingle(object):
                 for line in words:
                     check_hash = check_password_hash(self.hasho, line)
                     if check_hash:
-                        print(f"Password Is {line}")
+                        print(f"Hash: {self.hasho} Has Password {line}")
                         exit(0)
                     else:
                         continue
